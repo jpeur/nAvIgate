@@ -20,7 +20,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
-    width: 500px;
+    width: 600px;
 }
 
 form h2 {
@@ -42,7 +42,7 @@ p {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     margin-bottom: 20px;
-    width: 500px;
+    width: 600px;
     margin-top: 10px;
 }
 
@@ -55,6 +55,16 @@ p {
 .results p {
     margin-bottom: 5px;
     text-indent: 20px;
+}
+
+.address {
+    visibility: hidden;
+    padding-left: 10px;
+    color: gray;
+}
+
+.item:hover .address {
+    visibility: visible;
 }
 </style>
 </head>
@@ -89,7 +99,9 @@ p {
 <div class="results">
     <h2>Restaurants</h2>
     {% for restaurant in restaurants %}
-        <p>- {{ restaurant['name'] }}</p>
+        <div class="item">
+            <p>- <span class="name">{{ restaurant['name'] }}</span> <span class="address">{{ restaurant['address'] }}</span></p>
+        </div>
     {% endfor %}
 </div>
 {% endif %}
@@ -99,7 +111,9 @@ p {
 <div class="results">
     <h2>Attractions</h2>
     {% for attraction in attractions %}
-        <p>- {{ attraction['name'] }}</p>
+        <div class="item">
+            <p>- <span class="name">{{ attraction['name'] }}</span> <span class="address">{{ attraction['address'] }}</span></p>
+        </div>
     {% endfor %}
 </div>
 {% endif %}

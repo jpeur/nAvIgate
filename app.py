@@ -47,11 +47,16 @@ def home():
         response = requests.request('GET', url, headers=headers, params=url_params)
         restaurants = response.json().get('businesses', [])
 
+        for restaurant in restaurants:
+            restaurant['address'] = ", ".join(restaurant['location']['display_address'])
+
         # Yelp API request for attractions
         url_params['term'] = 'attractions'
         response = requests.request('GET', url, headers=headers, params=url_params)
         attractions = response.json().get('businesses', [])
-        # print(attractions)
+
+        for attraction in attractions:
+            attraction['address'] = ", ".join(attraction['location']['display_address'])
 
         # fetch fun facts
         try:
