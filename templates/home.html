@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: flex-start;  /* Align items to the start of page, not center */
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    color: #212529;
+    padding: 20px;  /* Add some padding to give some space at the top of the page */
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.message {
+    height: 30px;
+}
+
+.results {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: 500px;
+    margin-top: 10px;
+}
+
+.results h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.results p {
+    margin-bottom: 5px;
+    text-indent: 20px;
+}
+</style>
+</head>
+<body>
+
+<form method="POST">
+    <h2>nAvIgate</h2>
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.city.label }}<br>
+        {{ form.city(size=20) }}<br>
+    </p>
+    <p>
+        {{ form.state.label }}<br>
+        {{ form.state(size=20) }}<br>
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+<!-- Wikipedia Fun Facts -->
+{% if form_submitted and fun_facts %}
+<div class="results">
+    <h2>Wikipedia Fun Facts</h2>
+    {% for fact in fun_facts %}
+        <p>- {{ fact }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Restaurants -->
+{% if form_submitted and restaurants %}
+<div class="results">
+    <h2>Restaurants</h2>
+    {% for restaurant in restaurants %}
+        <p>- {{ restaurant['name'] }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Attractions -->
+{% if form_submitted and attractions %}
+<div class="results">
+    <h2>Attractions</h2>
+    {% for attraction in attractions %}
+        <p>- {{ attraction['name'] }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>
