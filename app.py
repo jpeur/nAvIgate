@@ -24,7 +24,7 @@ def home():
     restaurants = []
     attractions = []
     form_submitted = False  # flag for whether a form submission has occurred
-    yelp_key = 'Vyj7VxWT6aoX7g-iMlQmKy4RlGZVKnY0tJy7coOMU1IVcs9e4UXiX_CJWbeqYiVEflkM5bxL-Dqm8u785vb1wfO3FZQJFUWXZPQ4rRFDiFX6In95whSO_X99DL-cZHYx'
+    yelp_key = ''
     API_HOST = 'https://api.yelp.com'
     SEARCH_PATH = '/v3/businesses/search'
 
