@@ -5,6 +5,8 @@ from wtforms.validators import DataRequired
 import wikipedia
 import requests
 import json
+import openai
+import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'jpeur'
@@ -26,6 +28,9 @@ def home():
     API_HOST = 'https://api.yelp.com'
     SEARCH_PATH = '/v3/businesses/search'
 
+    random_restaurants = []
+    random_attractions = []
+
     if form.validate_on_submit():
         form_submitted = True  # form has been submitted
         city_name = form.city.data
@@ -39,7 +44,7 @@ def home():
         url_params = {
             'term': 'restaurants',
             'location': location.replace(' ', '+'),
-            'limit': 3,
+            'limit': 10,
             'radius': 8047
         }
         url = '{0}{1}'.format(API_HOST, SEARCH_PATH)
@@ -58,6 +63,17 @@ def home():
         for attraction in attractions:
             attraction['address'] = ", ".join(attraction['location']['display_address'])
 
+        random_restaurants = random.sample(restaurants, 3)
+
+        for restaurant in random_restaurants:
+            restaurant['address'] = ", ".join(restaurant['location']['display_address'])
+
+        # Randomly select 3 attractions from the broader range
+        random_attractions = random.sample(attractions, 3)
+
+        for attraction in random_attractions:
+            attraction['address'] = ", ".join(attraction['location']['display_address'])
+
         # fetch fun facts
         try:
             summary = wikipedia.summary(location, sentences = 3)
@@ -67,7 +83,7 @@ def home():
         except wikipedia.exceptions.DisambiguationError as e:
             fun_facts.append('Multiple possibilities found, please specify. For example: {}'.format(', '.join(e.options[:3])))
 
-    return render_template('home.html', form=form, location=location, fun_facts=fun_facts, form_submitted=form_submitted, restaurants=restaurants, attractions=attractions)
+    return render_template('home.html', form=form, location=location, fun_facts=fun_facts, form_submitted=form_submitted, restaurants=random_restaurants, attractions=random_attractions)
 
 if __name__ == "__main__":
     app.run(debug=True)
