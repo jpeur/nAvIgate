@@ -1,2 +1,0 @@
-yelp_key = 'Vyj7VxWT6aoX7g-iMlQmKy4RlGZVKnY0tJy7coOMU1IVcs9e4UXiX_CJWbeqYiVEflkM5bxL-Dqm8u785vb1wfO3FZQJFUWXZPQ4rRFDiFX6In95whSO_X99DL-cZHYx'
-baba_ki = 123
