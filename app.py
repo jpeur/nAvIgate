@@ -7,7 +7,7 @@ import requests
 import json
 import openai
 import random
-import keys
+import keys.keys as keys
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'jpeur'
