@@ -7,6 +7,7 @@ import requests
 import json
 import openai
 import random
+import keys
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'jpeur'
@@ -24,7 +25,7 @@ def home():
     restaurants = []
     attractions = []
     form_submitted = False  # flag for whether a form submission has occurred
-    yelp_key = ''
+    yelp_key = keys.yelp_key
     API_HOST = 'https://api.yelp.com'
     SEARCH_PATH = '/v3/businesses/search'
 
